@@ -1,0 +1,34 @@
+Demos using Spring Vault's `@VaultPropertySource`.
+* First start a dev instance of vault.
+
++
+
+[source,bash]
+----
+$ vault server -dev
+==> Vault server configuration:
+...
+Root Token: 11cb79da-ac98-d5ac-58b8-5d2def678926
+...
+----
+
+* Export
+
++
+
+[source,bash]
+----
+export VAULT_ADDR='http://127.0.0.1:8200'
+----
+
+* Write the secret in vault
+
++
+
+[source,bash]
+----
+$ vault write secret/my-application secret-from-vault=vault
+Success! Data written to: secret/my-application
+----
+
+* Run the `AppTests` with the system property `vault.token` set to the vault token (i.e. `-Dvault.token=11cb79da-ac98-d5ac-58b8-5d2def678926`)
